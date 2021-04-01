@@ -15,17 +15,17 @@ class Main : IXposedHookLoadPackage {
                     "isGlobalSpdySwitchOpen",
                     MainHook()
             )
+
         }
     }
-}
 
-
-class MainHook : XC_MethodHook() {
-    override fun afterHookedMethod(param: MethodHookParam?) {
-        super.afterHookedMethod(param)
-        XposedBridge.log("运行到我啦")
-        param?.apply {
-            result = false
+    inner class MainHook : XC_MethodHook() {
+        override fun afterHookedMethod(param: MethodHookParam?) {
+            super.afterHookedMethod(param)
+            XposedBridge.log("运行到我啦")
+            param?.apply {
+                result = false
+            }
         }
     }
 }
